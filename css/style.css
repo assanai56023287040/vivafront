@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "athiti";
+  src: url(fonts/athiti/athiti-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "mitrlight";
+  src: url(fonts/mitr/Mitr-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "thsarabun";
+  src: url(fonts/thsarabun/THSarabun.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url("fonts/poppins/Poppins-Regular.ttf"); }
+
+body {
+	font-family: "Poppins-Regular","thsarabun";
+}
+
+.full-height {
+  height: 100%;
+}
+
+.true-center-page {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.badge-center {
+  width: 50%;
+}
+
+.bg-white-transparant {
+  border: 1px solid white;
+  border-radius: 10px;
+  background: rgba(255 ,255 ,255 ,0.1);
+}
+
+.input-white-transparant {
+  font-size: 20px;
+  border: 1px solid rgba(255 ,255 ,255 ,0.4);
+  border-radius: 5px;
+  padding: 7px 18px;
+  background: rgba(255 ,255 ,255 ,0.2);
+}
+
+.lang-white-transparant {
+  pointer-events: pointer;
+  border: 1px solid white;
+  border-radius: 10px;
+  background: rgba(255 ,255 ,255 ,0.1);
+}
+
+.lang-white-transparant:hover {
+  border: 1px solid white;
+  border-radius: 10px;
+  background: rgba(255 ,255 ,255 ,0.2);
+}
+
+.lang-white-transparant.sellang {
+  border: 1px solid white;
+  border-radius: 10px;
+  background: rgba(255 ,255 ,255 ,0.4);
+  box-shadow: 0 0 10px #ffffff;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>VIVA Front</title>
+
+
+	<link rel="stylesheet" href="asset/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="asset/sweetalert2/dist/sweetalert2.min.css">
+
+	<link rel="stylesheet" href="asset/select2/css/select2.css">
+	<link rel="stylesheet" href="asset/select2/css/select2-bootstrap.css">
+
+	<link rel="stylesheet" href="css/datepicker.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style type="text/css">
+		html{
+			height: 100%;
+		}
+		body{
+			background-image: linear-gradient(to left bottom, #35d8b6, #00c6ce, #00b2e1, #0099e7, #257cdb);
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+<div id="app" class="container-fluid">
+	<div class="d-flex flex-row w-100" style="height: 100vh;">
+		<img class="img-fluid align-self-end d-none d-lg-block" src="asset/img/form-wizard.png" style="max-width: 40vw;max-height: 90vh;">
+		<div class="align-self-stretch text-center flex-fill p-sm-2 p-md-3 p-lg-4">
+			<div class="badge badge-warning text-white p-3 my-3 mx-auto">#Appointment from : VIVA center Thammasat Rangsit</div>
+			<div class="bg-white-transparant p-3">
+				<div class="w-100" style="height: 65vh;overflow-y: auto;">
+					<!-- section 1 -->
+					<section id="step-1" style="display: none;">
+						<div class="container-fluid p-0">
+							
+							<div class="d-flex flex-row flex-row w-100 align-items-stretch">
+								<div class="mx-3 lang-white-transparant py-3 text-center w-100" 
+									@click="sellang='th'"
+									:class="{'sellang' : sellang=='th'}"
+									>
+									<i class="my-2" :class="sellang=='th'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+									<h1 class="text-center text-white font-weight-bold">TH</h1>
+									<h4 class="text-white font-weight-bold">ภาษาไทย</h4>
+								</div>
+								<div class="mx-3 lang-white-transparant py-3 text-center w-100" 
+									@click="sellang='en'"
+									:class="{'sellang' : sellang=='en'}"
+									>
+									<i class="my-2" :class="sellang=='en'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+									<h1 class="text-center text-white font-weight-bold">EN</h1>
+									<h4 class="text-white font-weight-bold">English</h4>
+								</div>
+							</div>
+						</div>
+						
+					</section>
+					<!-- section 2 -->
+					<section id="step-2" style="display: none;">
+						<div class="container-fluid">
+							<p class="font-weight-bold">aaaaaaaaaa</p>
+							<p class="font-weight-bold">bbbbbbbbbb</p>
+							<p class="font-weight-bold">cccccccccc</p>
+						</div>
+					</section>
+
+					<!-- section 3 -->
+
+					<!-- section 4 -->
+				</div>
+
+				<div id="step-command" class="d-flex w-100">
+					<button type="button" 
+							class="btn btn-success mr-auto px-3" 
+							style="border-radius: 20px;"
+							v-show="currentstep.activeprevious && currentstep.idx > 0"
+							@click="changestep(currentstep.step-1)"
+						>
+						{{ lang.btnprevious }}
+					</button>
+					<button type="button" 
+							class="btn btn-warning ml-auto px-3" 
+							style="border-radius: 20px;"
+							v-show="currentstep.activenext && currentstep.idx+1 < steps.length"
+							@click="changestep(currentstep.step+1)"
+						>
+						{{ lang.btnnext }}
+					</button>
+				</div>
+			</div>
+
+			<div class="progress border my-4" style="height: 1rem;height: 20px;border-radius: 15px;background: rgba(255 ,255 ,255 ,0.4);">
+				<div class="progress-bar bg-white" style="width: 60%;border-radius: 15px;"></div>
+			</div>
+		</div>
+		<div class=""></div>
+	</div>
+</div> <!-- end of div #app  --> 
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/tooltip.min.js"></script>
+<script src="asset/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- <script src="js/vue.min.js"></script> -->
+<script src="js/vue.js"></script>
+<script src="js/jquery-ui/jquery-ui.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="asset/axios/dist/axios.min.js"></script>
+<script src="asset/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="asset/select2/js/select2.js"></script>
+
+<!-- <script src="assets/select2/js/select2.min.js"></script> -->
+
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker-thai.js"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datepicker.th.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+<script type="text/javascript">
+	let app = new Vue({
+		el: '#app',
+		data: {
+			sellang : '',
+			steps : [
+				{
+					step : 1,
+					activeprevious : true,
+					activenext : true,
+
+				},
+				{
+					step : 2,
+					activeprevious : true,
+					activenext : true,
+
+				},
+			],
+			currentstep : {},
+			lang : {},
+			thlang : {
+				btnprevious : 'ย้อนกลับ',
+				btnnext : 'ถัดไป',
+			},
+			enlang : {
+				btnprevious : 'Previous',
+				btnnext : 'Next',
+			},
+
+		},
+		methods: {
+			managestep(){
+
+			},
+			changestep(step){
+				let before = this.currentstep;
+				let curidx = this.steps.findIndex(v => v.step == step);
+				this.currentstep = this.steps[curidx];
+				this.currentstep.idx = curidx;
+				let from = 'step-'+before.step;
+				let to = 'step-'+step;
+
+				// if(step > 1){ // ถ้า เท่ากับ 1 ไม่ต้อง fade out 
+				// }
+				// $('#'+to).show("slide", { direction: "down" }, 500);
+				// $('#'+from).hide("slide", { direction: "up" }, 500);
+
+				$('#'+from).fadeOut(300);
+				setTimeout(() => {
+					$('#'+to).fadeIn(300);
+				},300);
+			},
+			switchlang(){
+				switch(this.sellang){
+					case 'th' : this.lang = this.thlang; 
+						break;
+					case 'en' : this.lang = this.enlang;
+						break;
+					default :
+				}
+			},
+		},
+		mounted() {
+			this.sellang = 'th';
+			this.changestep(1);
+
+		},
+		computed: {
+
+		},
+		filters: {
+
+		},
+		watch: {
+			sellang(){
+				this.switchlang()
+			},
+		},
+	});
+</script>
+
+</body>
+</html>
