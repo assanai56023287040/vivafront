@@ -29,45 +29,51 @@
 	</style>
 </head>
 <body>
-<div id="app" class="container-fluid">
+<div id="app" class="container-fluid px-2">
 	<div class="d-flex flex-row w-100" style="height: 100vh;">
 		<img class="img-fluid align-self-end d-none d-lg-block" src="asset/img/form-wizard.png" style="max-width: 40vw;max-height: 90vh;">
-		<div class="align-self-stretch text-center flex-fill p-sm-2 p-md-3 p-lg-4">
-			<div class="badge badge-warning text-white p-3 my-3 mx-auto">#Appointment from : VIVA center Thammasat Rangsit</div>
-			<div class="bg-white-transparant p-3">
-				<div class="w-100" style="height: 65vh;overflow-y: auto;">
+		<div class="align-self-center text-center flex-fill p-sm-2 p-md-3 p-lg-4">
+			<div class="badge badge-warning text-white py-3 mt-0 mb-3 mx-auto">#Appointment form : Viva City @Thammasat Rangsit Center</div>
+			<div class="bg-white-transparant-1 p-3">
+				<div class="my-2 w-100" style="min-height: 40vh;overflow-y: auto;">
 					<!-- section 1 -->
 					<section id="step-1" style="display: none;">
-						<div class="container-fluid p-0">
 							
-							<div class="d-flex flex-row flex-row w-100 align-items-stretch">
-								<div class="mx-3 lang-white-transparant py-3 text-center w-100" 
-									@click="sellang='th'"
-									:class="{'sellang' : sellang=='th'}"
-									>
-									<i class="my-2" :class="sellang=='th'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
-									<h1 class="text-center text-white font-weight-bold">TH</h1>
-									<h4 class="text-white font-weight-bold">ภาษาไทย</h4>
-								</div>
-								<div class="mx-3 lang-white-transparant py-3 text-center w-100" 
-									@click="sellang='en'"
-									:class="{'sellang' : sellang=='en'}"
-									>
-									<i class="my-2" :class="sellang=='en'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
-									<h1 class="text-center text-white font-weight-bold">EN</h1>
-									<h4 class="text-white font-weight-bold">English</h4>
-								</div>
+						<div class="d-flex flex-column w-100">
+							<div class="lang-white-transparant my-3 py-3 text-center w-100" 
+								@click="sellang='th'"
+								:class="{'sellang' : sellang=='th'}"
+								>
+								<i class="my-2" :class="sellang=='th'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+								<!-- <h1 class="text-center text-white font-weight-bold">TH</h1> -->
+								<p class="text-white font-weight-bold">นัดหมายบริการสำหรับนักศึกษาไทย</p>
+							</div>
+							<div class="lang-white-transparant my-3 py-3 text-center w-100" 
+								@click="sellang='en'"
+								:class="{'sellang' : sellang=='en'}"
+								>
+								<i class="my-2" :class="sellang=='en'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+								<!-- <h1 class="text-center text-white font-weight-bold">EN</h1> -->
+								<p class="text-white font-weight-bold">Counseling in English for international students</p>
+							</div>
+
+							<div class="align-self-end w-100">
+								<p class="text-white text-left" style="font-size: 0.9em;">
+									{{ lang.callme }}
+								</p>
 							</div>
 						</div>
 						
 					</section>
 					<!-- section 2 -->
 					<section id="step-2" style="display: none;">
-						<div class="container-fluid">
-							<p class="font-weight-bold">aaaaaaaaaa</p>
-							<p class="font-weight-bold">bbbbbbbbbb</p>
-							<p class="font-weight-bold">cccccccccc</p>
+						<p class="text-center text-white font-weight-bold" style="font-size: 1.8rem;">{{ lang.conandpohead }}</p>
+						<div class="bg-white-transparant-2 my-2 p-3">
+							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail1 }}</p>
+							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail2 }}</p>
 						</div>
+						<input class="" type="checkbox" id="agreepolicy" v-model="agreepolicy">
+						<label for="agreepolicy">{{ lang.agreepolicy }}</label>
 					</section>
 
 					<!-- section 3 -->
@@ -95,8 +101,8 @@
 				</div>
 			</div>
 
-			<div class="progress border my-4" style="height: 1rem;height: 20px;border-radius: 15px;background: rgba(255 ,255 ,255 ,0.4);">
-				<div class="progress-bar bg-white" style="width: 60%;border-radius: 15px;"></div>
+			<div class="progress border my-4 section-bar-white">
+				<div class="progress-bar bg-white" :style="calculateprogresslength()"></div>
 			</div>
 		</div>
 		<div class=""></div>
@@ -128,6 +134,7 @@
 		el: '#app',
 		data: {
 			sellang : '',
+			agreepolicy : false,
 			steps : [
 				{
 					step : 1,
@@ -147,10 +154,20 @@
 			thlang : {
 				btnprevious : 'ย้อนกลับ',
 				btnnext : 'ถัดไป',
+				callme : '** หากไม่สะดวกเข้ารับบริการได้ตามที่ลงทะเบียน เช่น เลื่อนนัด หรือยกเลิกนัด โปรดโทรศัพท์เข้ามาแจ้งที่ 02-028-2222 หรือ inbox facebook.com/vivacity.tu เพื่อทางศูนย์จะได้จัดสรรบริการแก่ท่านอื่นต่อไป',
+				conandpohead : 'เงื่อนไขการใช้บริการ และนโยบายความเป็นส่วนตัวของข้อมูล',
+				conandpodetail1 : '1. บริการ ณ ศูนย์ชีวิตชีวา (Viva City) ให้บริการเฉพาะนักศึกษามหาวิทยาลัยธรรมศาสตร์ที่กำลังศึกษาอยู่เท่านั้น',
+				conandpodetail2 : '2. ข้อมูลทั้งหมดจะถูกเก็บเป็นความลับของศูนย์ฯ ไม่มีการเปิดเผยในที่สาธารณะใด ๆ เว้นแต่กรณีที่มีผลต่อความปลอดภัยแก่ชีวิต และทรัพย์สิน ซึ่งจะแจ้งให้ผู้ที่เกี่ยวข้องทราบเท่านั้น',
+				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
 			},
 			enlang : {
 				btnprevious : 'Previous',
 				btnnext : 'Next',
+				callme : '** หากไม่สะดวกเข้ารับบริการได้ตามที่ลงทะเบียน เช่น เลื่อนนัด หรือยกเลิกนัด โปรดโทรศัพท์เข้ามาแจ้งที่ 02-028-2222 หรือ inbox facebook.com/vivacity.tu เพื่อทางศูนย์จะได้จัดสรรบริการแก่ท่านอื่นต่อไป',
+				conandpohead : 'Conditions of service use and privacy policy',
+				conandpodetail1 : '1. Viva City services are only provided to current Thammasat University students ',
+				conandpodetail2 : '2. All information will be kept confidential. No information will be released to the public other than in emergency cases regarding life or property; only involved parties will be informed.',
+				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
 			},
 
 		},
@@ -185,10 +202,18 @@
 					default :
 				}
 			},
+			calculateprogresslength(){
+				let per = 0;
+				// (step x 100) / steps.length
+				per = ((this.currentstep.idx+1)*100) / this.steps.length;
+				return 'width : '+per+'%;';
+			},
 		},
 		mounted() {
 			this.sellang = 'th';
-			this.changestep(1);
+			setTimeout(() => {
+				this.changestep(1);
+			},500);
 
 		},
 		computed: {
