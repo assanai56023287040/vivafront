@@ -72,11 +72,19 @@
 							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail1 }}</p>
 							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail2 }}</p>
 						</div>
-						<input class="" type="checkbox" id="agreepolicy" v-model="agreepolicy">
-						<label for="agreepolicy">{{ lang.agreepolicy }}</label>
+						<div class="form-check text-left">
+							<input class="form-check-input" type="checkbox" id="agreepolicy" v-model="agreepolicy">
+							<label class="form-check-label" for="agreepolicy">{{ lang.agreepolicy }}</label>
+						</div>
 					</section>
 
 					<!-- section 3 -->
+
+					<section id="step-3" style="display: none;">
+						<h4 class="text-center text-white font-weight-bold">{{ lang.location }}</h4>
+						<div id="map" class="w-100 h-100"></div>
+						<!--  src="https://goo.gl/maps/cvjFqWQuJWG4fjJP7" -->
+					</section>
 
 					<!-- section 4 -->
 				</div>
@@ -93,6 +101,7 @@
 					<button type="button" 
 							class="btn btn-warning ml-auto px-3" 
 							style="border-radius: 20px;"
+							:disabled="!agreepolicy && currentstep.step == 2"
 							v-show="currentstep.activenext && currentstep.idx+1 < steps.length"
 							@click="changestep(currentstep.step+1)"
 						>
@@ -148,6 +157,12 @@
 					activenext : true,
 
 				},
+				{
+					step : 3,
+					activeprevious : true,
+					activenext : true,
+
+				},
 			],
 			currentstep : {},
 			lang : {},
@@ -159,6 +174,7 @@
 				conandpodetail1 : '1. บริการ ณ ศูนย์ชีวิตชีวา (Viva City) ให้บริการเฉพาะนักศึกษามหาวิทยาลัยธรรมศาสตร์ที่กำลังศึกษาอยู่เท่านั้น',
 				conandpodetail2 : '2. ข้อมูลทั้งหมดจะถูกเก็บเป็นความลับของศูนย์ฯ ไม่มีการเปิดเผยในที่สาธารณะใด ๆ เว้นแต่กรณีที่มีผลต่อความปลอดภัยแก่ชีวิต และทรัพย์สิน ซึ่งจะแจ้งให้ผู้ที่เกี่ยวข้องทราบเท่านั้น',
 				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
+				location : 'สถานที่ให้บริการ: NOC C6 (บริเวณหอพักเอเชียนเกมส์ โซน C6) มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต',
 			},
 			enlang : {
 				btnprevious : 'Previous',
@@ -168,6 +184,7 @@
 				conandpodetail1 : '1. Viva City services are only provided to current Thammasat University students ',
 				conandpodetail2 : '2. All information will be kept confidential. No information will be released to the public other than in emergency cases regarding life or property; only involved parties will be informed.',
 				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
+				location : 'Location: NOC C6 (Asian Games Dormitory C6 )Thammasat University Rangsit Center',
 			},
 
 		},
@@ -226,9 +243,19 @@
 			sellang(){
 				this.switchlang()
 			},
+			agreepolicy(){
+
+			},
 		},
 	});
+
+	function initMap() {
+		let uluru = {lat : 14.073865,lng : 100.595991};
+		let map = new google.maps.Map(document.getElementById('map'), {zoom: 17, center: uluru});
+		let maker = new google.maps.Marker({position: uluru, map: map});
+	}
 </script>
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZC9diNUCGOhip1-vSegITfiAT2RZpng&callback=initMap"></script>
 
 </body>
 </html>

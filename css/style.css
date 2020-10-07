@@ -19,7 +19,11 @@
   src: url("fonts/poppins/Poppins-Regular.ttf"); }
 
 body {
-	font-family: "Poppins-Regular","thsarabun";
+	/*font-family: "Poppins-Regular","thsarabun";*/
+  /*font-family: "thsarabun";*/
+  /*font-family: "mitrlight";*/
+  font-family: "athiti";
+  color: white;
 }
 
 .full-height {
