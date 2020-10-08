@@ -45,20 +45,18 @@
 								:class="{'sellang' : sellang=='th'}"
 								>
 								<i class="my-2" :class="sellang=='th'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
-								<!-- <h1 class="text-center text-white font-weight-bold">TH</h1> -->
-								<p class="text-white font-weight-bold">นัดหมายบริการสำหรับนักศึกษาไทย</p>
+								<h4 class="text-white font-weight-bold">นัดหมายบริการสำหรับนักศึกษาไทย</h4>
 							</div>
 							<div class="lang-white-transparant my-3 py-3 text-center w-100" 
 								@click="sellang='en'"
 								:class="{'sellang' : sellang=='en'}"
 								>
 								<i class="my-2" :class="sellang=='en'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
-								<!-- <h1 class="text-center text-white font-weight-bold">EN</h1> -->
-								<p class="text-white font-weight-bold">Counseling in English for international students</p>
+								<h4 class="text-white font-weight-bold">Counseling in English for international students</h4>
 							</div>
 
 							<div class="align-self-end w-100">
-								<p class="text-white text-left" style="font-size: 0.9em;">
+								<p class="text-left" style="font-size: 0.9em;">
 									{{ lang.callme }}
 								</p>
 							</div>
@@ -67,10 +65,10 @@
 					</section>
 					<!-- section 2 -->
 					<section id="step-2" style="display: none;">
-						<p class="text-center text-white font-weight-bold" style="font-size: 1.8rem;">{{ lang.conandpohead }}</p>
+						<p class="text-center font-weight-bold" style="font-size: 1.8rem;">{{ lang.conandpohead }}</p>
 						<div class="bg-white-transparant-2 my-2 p-3">
-							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail1 }}</p>
-							<p class="text-left text-white" style="font-size: 1.2rem;">{{ lang.conandpodetail2 }}</p>
+							<p class="text-left" style="font-size: 1.2rem;">{{ lang.conandpodetail1 }}</p>
+							<p class="text-left" style="font-size: 1.2rem;">{{ lang.conandpodetail2 }}</p>
 						</div>
 						<div class="form-check text-left">
 							<input class="form-check-input" type="checkbox" id="agreepolicy" v-model="agreepolicy">
@@ -81,9 +79,15 @@
 					<!-- section 3 -->
 
 					<section id="step-3" style="display: none;">
-						<h4 class="text-center text-white font-weight-bold">{{ lang.location }}</h4>
-						<div id="map" class="w-100 h-100"></div>
-						<!--  src="https://goo.gl/maps/cvjFqWQuJWG4fjJP7" -->
+						<h4 class="text-center font-weight-bold">Viva City : THAMMASAT UNIVERSITY</h4>
+						<h5 class="text-center">{{ lang.vivalocal }}</h5>
+						<p class="text-left mb-1">{{ lang.vivalocal1 }}</p>
+						<p class="text-left mb-1">{{ lang.vivalocal2 }}</p>
+						<img class="img-fluid rounded-lg shadow border border-white" src="asset/img/viva_on_maps.png" @click="openmaps()"/>
+						<p class="text-center mb-1" style="font-size: 0.8rem;">{{ lang.tapphoto }}</p>
+						<p class="text-left mb-1">{{ lang.appointmentandcontact }}</p>
+						<p class="text-left mb-1"><i class="fab fa-facebook-square mr-2 text-white"></i>Facebook : https://www.facebook.com/vivacity.tu</p>
+						<p class="text-left mb-1"><i class="fas fa-envelope-open-text mr-2 text-white"></i>Email : vivacity.tu@gmail.com</p>
 					</section>
 
 					<!-- section 4 -->
@@ -174,7 +178,11 @@
 				conandpodetail1 : '1. บริการ ณ ศูนย์ชีวิตชีวา (Viva City) ให้บริการเฉพาะนักศึกษามหาวิทยาลัยธรรมศาสตร์ที่กำลังศึกษาอยู่เท่านั้น',
 				conandpodetail2 : '2. ข้อมูลทั้งหมดจะถูกเก็บเป็นความลับของศูนย์ฯ ไม่มีการเปิดเผยในที่สาธารณะใด ๆ เว้นแต่กรณีที่มีผลต่อความปลอดภัยแก่ชีวิต และทรัพย์สิน ซึ่งจะแจ้งให้ผู้ที่เกี่ยวข้องทราบเท่านั้น',
 				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
-				location : 'สถานที่ให้บริการ: NOC C6 (บริเวณหอพักเอเชียนเกมส์ โซน C6) มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต',
+				vivalocal : 'ศูนย์บริการให้คำปรึกษานักศึกษามหาวิทยาลัยธรรมศาสตร์',
+				vivalocal1 : '- บริการให้คำปรึกษา เช่น ปัญหาด้านการเรียน การปรับตัว ครอบครัว สัมพันธภาพ ความรัก หรือปัญหาสุขภาพจิต',
+				vivalocal2 : '- สามารถติดต่อขอรับบริการได้ ณ NOC C6 (บริเวณหอพักเอเชียนเกมส์ โซน C6)',
+				tapphoto : 'กดที่รูปภาพ เพื่อเปิดแผนที่',
+				appointmentandcontact : 'ในวันทำการ จ.-ศ. เวลา 8.30 - 22.00 น. เบอร์โทรติดต่อ 02-028-2222 กด 2',
 			},
 			enlang : {
 				btnprevious : 'Previous',
@@ -184,7 +192,11 @@
 				conandpodetail1 : '1. Viva City services are only provided to current Thammasat University students ',
 				conandpodetail2 : '2. All information will be kept confidential. No information will be released to the public other than in emergency cases regarding life or property; only involved parties will be informed.',
 				agreepolicy : 'ยอมรับเงื่อนไขการใช้บริการศูนย์ชีวิตชีวา Viva City กองกิจการนักศึกษา มหาวิทยาลัยธรรมศาสตร์',
-				location : 'Location: NOC C6 (Asian Games Dormitory C6 )Thammasat University Rangsit Center',
+				vivalocal : 'Student Counseling Service at Thammasat',
+				vivalocal1 : 'University provides counseling psychological and mental health support to Thammasat university students at NOC C6, TU Rangsit.',
+				vivalocal2 : '',
+				tapphoto : 'Tap the photo to open Maps',
+				appointmentandcontact : 'Making an Appointment on google form Office hours: Monday-Friday, 08.30 am - 22.00 pm / Tel. 02-028-2222 press 2',
 			},
 
 		},
@@ -225,6 +237,9 @@
 				per = ((this.currentstep.idx+1)*100) / this.steps.length;
 				return 'width : '+per+'%;';
 			},
+			openmaps(){
+				window.open('https://goo.gl/maps/cvjFqWQuJWG4fjJP7','_blank');
+			},
 		},
 		mounted() {
 			this.sellang = 'th';
@@ -249,13 +264,8 @@
 		},
 	});
 
-	function initMap() {
-		let uluru = {lat : 14.073865,lng : 100.595991};
-		let map = new google.maps.Map(document.getElementById('map'), {zoom: 17, center: uluru});
-		let maker = new google.maps.Marker({position: uluru, map: map});
-	}
 </script>
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZC9diNUCGOhip1-vSegITfiAT2RZpng&callback=initMap"></script>
+
 
 </body>
 </html>
