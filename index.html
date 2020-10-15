@@ -40,16 +40,16 @@
 					<section id="step-1" style="display: none;">
 							
 						<div class="d-flex flex-column w-100">
-							<div class="lang-white-transparant my-3 py-3 text-center w-100" 
+							<div class="item-white-transparant my-3 py-3 text-center w-100" 
 								@click="sellang='th'"
-								:class="{'sellang' : sellang=='th'}"
+								:class="{'selitem' : sellang=='th'}"
 								>
 								<i class="my-2" :class="sellang=='th'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
 								<h4 class="text-white font-weight-bold">นัดหมายบริการสำหรับนักศึกษาไทย</h4>
 							</div>
-							<div class="lang-white-transparant my-3 py-3 text-center w-100" 
+							<div class="item-white-transparant my-3 py-3 text-center w-100" 
 								@click="sellang='en'"
-								:class="{'sellang' : sellang=='en'}"
+								:class="{'selitem' : sellang=='en'}"
 								>
 								<i class="my-2" :class="sellang=='en'? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
 								<h4 class="text-white font-weight-bold">Counseling in English for international students</h4>
@@ -91,6 +91,36 @@
 					</section>
 
 					<!-- section 4 -->
+					<section id="step-4" style="display: none;">
+						<div class="d-flex flex-row w-100">
+							<div class="item-white-transparant align-self-stretch mx-3 py-2 text-center flex-fill"
+								@click="hasvisit=true"
+								:class="{'selgreenitem' : hasvisit==true}"
+								>
+								<i class="my-2" :class="hasvisit==true? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+								<p class="text-white font-weight-bold mb-1">เคยมาใช้บริการ</p>
+							</div>
+							<div class="item-white-transparant align-self-stretch mx-3 py-2 text-center flex-fill"
+								@click="hasvisit=false"
+								:class="{'selreditem' : hasvisit==false}"
+								>
+								<i class="my-2" :class="hasvisit==false? 'fas fa-check-circle' : 'far fa-circle'" style="font-size: 1.4rem;color: #ffffff;"></i>
+								<p class="text-white font-weight-bold mb-1">ไม่เคยมาใช้บริการ</p>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row my-2">
+								<div class="col-sm-12 col-md-12 col-lg-6 text-left">
+									<label class="mx-3">lbl_1</label>
+									<input type="text" class="text-left pl-2 py-2 w-100" placeholder="inputtext_1" />
+								</div>
+								<div class="col-sm-12 col-md-12 col-lg-6 text-left">
+									<label class="mx-3">lbl_2</label>
+									<input type="text" class="text-left pl-2 py-2 w-100" placeholder="inputtext_2" />
+								</div>
+							</div>
+						</div>
+					</section>
 				</div>
 
 				<div id="step-command" class="d-flex w-100">
@@ -167,8 +197,15 @@
 					activenext : true,
 
 				},
+				{
+					step : 4,
+					activeprevious : true,
+					activenext : true,
+
+				},
 			],
 			currentstep : {},
+			hasvisit : null,
 			lang : {},
 			thlang : {
 				btnprevious : 'ย้อนกลับ',
