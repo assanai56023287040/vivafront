@@ -137,6 +137,6 @@ input,select,textarea:focus {
 
 ::placeholder {
   color: white;
-  opacity: 0.7;
+  opacity: 0
 }
 
